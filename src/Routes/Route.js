@@ -7,6 +7,7 @@ import EmbedCheckout from '../EmbedCheckout';
 import Login from '../Login';
 import SignUp from '../SignUp';
 import Logout from '../Logout';
+import SearchItems from '../TopNavigtion/SearchedItems';
 function PageRoute(){
     return(
         <>
@@ -17,6 +18,7 @@ function PageRoute(){
             <Route path="/logout" element={<Logout />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/checkout" element={<EmbedCheckout />} />
+            <Route path="/search" element={<SearchItems />} />
             <Route path="/quantity-toggle" element={<QuantityChange />} />
         </Routes></>
     )

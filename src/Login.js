@@ -67,7 +67,6 @@ function Login() {
                 customerLoginResponse = "SUCCESS";
             }
             dispatch({ type: 'LOGIN', payload: customerLoginResponse });
-            //dispatch(customerLogin(loginResponse));
             clearInterval(loginUpdate);
           } catch (error) {
             console.log('Error recieving value:', error);

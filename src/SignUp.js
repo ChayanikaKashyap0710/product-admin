@@ -14,71 +14,71 @@ function SignUp() {
             .catch((error) => console.log(error));
     }, []);
     return (
-        <div class="container">
+        <div className="container">
             {country &&
-            <><div class="title">Registration</div><div class="content">
+            <><div className="title">Registration</div><div className="content">
                     <form action="#">
-                        <div class="user-details">
-                            <div class="input-box">
-                                <span class="details">Email</span>
+                        <div className="user-details">
+                            <div className="input-box">
+                                <span className="details">Email</span>
                                 <input type="text" placeholder="Enter your email" required />
                             </div>
-                            <div class="input-box">
-                                <span class="details">Password</span>
+                            <div className="input-box">
+                                <span className="details">Password</span>
                                 <input type="text" placeholder="Enter your password" required />
                             </div>
-                            <div class="input-box">
-                                <span class="details"> Confirm Password</span>
+                            <div className="input-box">
+                                <span className="details"> Confirm Password</span>
                                 <input type="text" placeholder="confirm password" required />
                             </div>
-                            <div class="input-box">
-                                <span class="details">First Name</span>
+                            <div className="input-box">
+                                <span className="details">First Name</span>
                                 <input type="text" placeholder="Enter your first name" required />
                             </div>
-                            <div class="input-box">
-                                <span class="details">Last Name</span>
+                            <div className="input-box">
+                                <span className="details">Last Name</span>
                                 <input type="text" placeholder="Enter your last name" required />
                             </div>
-                            <div class="input-box">
-                                <span class="details">Company</span>
+                            <div className="input-box">
+                                <span className="details">Company</span>
                                 <input type="text" placeholder="Enter your company" required />
                             </div>
-                            <div class="input-box">
-                                <span class="details">Phone Number</span>
+                            <div className="input-box">
+                                <span className="details">Phone Number</span>
                                 <input type="text" placeholder="Enter your number" required />
                             </div>
-                            <div class="input-box">
-                                <span class="details">Address 1</span>
+                            <div className="input-box">
+                                <span className="details">Address 1</span>
                                 <input type="text" placeholder="Enter your address" required />
                             </div>
-                            <div class="input-box">
-                                <span class="details">Address 2</span>
+                            <div className="input-box">
+                                <span className="details">Address 2</span>
                                 <input type="text" placeholder="Enter your address" required />
                             </div>
-                            <div class="input-box">
-                                <span class="details">City</span>
+                            <div className="input-box">
+                                <span className="details">City</span>
                                 <input type="text" placeholder="Enter your city" required />
                             </div>
 
-                            <div class="country-details">
-                                <span class="country-title">Country</span><br />
-                                <select class="details" name="country" id="country">
+                            <div className="country-details">
+                                <span className="country-title">Country</span><br />
+                                <select className="details" name="country" id="country">
                                     <option>Select Country</option>
                                     {country .map((value, i) => (
                                     <option key ={i} value={value.country_iso2}>{value.country}</option>
                                     ))}
                                 </select>
                             </div>
-                            <div class="input-box">
-                                <span class="details">State</span>
+                            <div className="input-box">
+                                <span className="details">State</span>
                                 <input type="text" placeholder="Enter your state" required />
                             </div>
-                            <div class="input-box">
-                                <span class="details">Zip Code</span>
+                            <div className="input-box">
+                                <span className="details">Zip Code</span>
                                 <input type="text" placeholder="Enter your zip code" required />
                             </div>
                         </div>
-                        <div class="button">
+                        <div className="button">
                             <input type="submit" value="Register" />
                         </div>
                     </form>

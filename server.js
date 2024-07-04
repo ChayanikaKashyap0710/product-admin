@@ -65,12 +65,12 @@ app.use(express.json())
 let receivedValue = '';
 app.post('/category-id', (req, res) => {
   const { value } = req.body;
-  console.log('Received value:', value);
+  //console.log('Received value:', value);
   receivedValue = { value };
   res.json({ message: 'Value received successfully' });
 });
 app.get('/category-id', async (req, res) => {
-  console.log('Using received value:', JSON.stringify(receivedValue.value));
+  //console.log('Using received value:', JSON.stringify(receivedValue.value));
   var categoryId = JSON.stringify(Number(receivedValue.value));
   if (categoryId !== undefined) {
     const singleCategoryQuery = `query productsInCategory(
@@ -184,7 +184,7 @@ app.get('/category-id', async (req, res) => {
 var loginData = '';
 app.post('/login', (req, res) => {
   const { value } = req.body;
-  console.log('Received value:', value);
+  //console.log('Received value:', value);
   loginData = { value };
   res.json({ message: 'Value received successfully' });
 });
@@ -302,11 +302,11 @@ app.get('/logout', async (req, res) => {
 
   axios.request(config)
     .then((response) => {
-      console.log(JSON.stringify(response.data));
+      //console.log(JSON.stringify(response.data));
       res.send(response.data);
     })
     .catch((error) => {
-      console.log(error);
+      //console.log(error);
     });
 
 });
@@ -328,7 +328,7 @@ app.get('/country', async (req, res) => {
       res.send(response.data);
     })
     .catch((error) => {
-      console.log(error);
+      //console.log(error);
     });
 
 
@@ -337,7 +337,7 @@ app.get('/country', async (req, res) => {
 let receivedProductId = '';
 app.post('/product-id', (req, res) => {
   const { value } = req.body;
-  console.log('Received value:', value);
+  //console.log('Received value:', value);
   receivedProductId = { value };
   res.json({ message: 'Value received successfully' });
 });
@@ -461,7 +461,7 @@ app.get('/product-id', (req, res) => {
       res.send(response.data);
     })
     .catch((error) => {
-      console.log(error);
+      //console.log(error);
     });
 
 });
@@ -472,5 +472,5 @@ app.all('*', (req, res) => {
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
-  console.log(`Proxy server listening on port ${port}`);
+  //console.log(`Proxy server listening on port ${port}`);
 });

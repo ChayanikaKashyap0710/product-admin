@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import store from '../store';
 import { Link } from 'react-router-dom';
 import Search from "./Search";
-import {customerLogin, customerLogout} from '../actions/index';
+import { customerLogin, customerLogout } from '../actions/index';
 import './AppStyle.css';
 import Login from "../Login";
 function TopNav() {
@@ -21,47 +21,84 @@ function TopNav() {
       })
       .catch((error) => console.log(error));
   }, []);
+
+  let navbar = document.querySelector(".navbar");
+  let navLinks = document.querySelector(".nav-links");
+  let menuOpenBtn = document.querySelector(".navbar");
+  let menuCloseBtn = document.querySelector(".nav-links");
+  if (menuOpenBtn != null) {
+    menuOpenBtn.onclick = function () {
+      navLinks.style.left = "0";
+    }
+    menuCloseBtn.onclick = function () {
+      navLinks.style.left = "-100%";
+    }
+  }
+
+  let htmlcssArrow = document.querySelector(".htmlcss-arrow");
+  if (htmlcssArrow != null) {
+    htmlcssArrow.onclick = function () {
+      navLinks.classList.toggle("show1");
+    }
+  }
+  let moreArrow = document.querySelector(".more-arrow");
+  if (moreArrow != null) {
+    moreArrow.onclick = function () {
+      navLinks.classList.toggle("show2");
+    }
+  }
+  let jsArrow = document.querySelector(".js-arrow");
+  if (jsArrow != null) {
+    jsArrow.onclick = function () {
+      navLinks.classList.toggle("show3");
+    }
+  }
   return (
     <>
-      <div className="user-nav">
-        <Search/>
-        <div className="user">
-        <ul className="multilevel-dropdown-menu">
-          <li className="parent"><i className="fa fa-user" aria-hidden="true"></i>
-            <ul className="child">
-              {/* <li><Link to={"/login"}>Login</Link></li> */}
-              {isAuthenticated ? (
-                 <li><Link to={"/logout"}>Log Out</Link></li>
-                ) : (
-                  <li><Link to={"/login"}>Log In</Link></li>
-                )}
-              <li><Link to={"/sign-up"}>Sign In</Link></li>
+
+      <nav>
+        <div className="navbar">
+          <i className='bx bx-menu'></i>
+          <div className="logo"><Link to={`/`}>BigCommerce Headless</Link></div>
+          <div className="nav-links">
+            <div className="sidebar-logo">
+              <span className="logo-name"><Link to={`/`}>BigCommerce Headless</Link></span>
+              <i className='bx bx-x'></i>
+            </div>
+            <ul className="links">
+              {categoryData && categoryData.map((value, i) => (
+                <>
+                  {value.children.length > 0 ?
+                    <li key={i}>
+                      <Link to={`category/${value.entityId}`}> {value.name}</Link>
+                      <i className='bx bxs-chevron-down htmlcss-arrow arrow'></i>
+                      <ul className="htmlCss-sub-menu sub-menu">
+                        {value.children.map((levelvalue, j) => (
+                          <li key={j}>  <Link to={`category/${levelvalue.entityId}`}>{levelvalue.name}</Link></li>
+                        ))}
+                      </ul>
+                    </li>
+                    :
+                    <li key={i}><Link to={`category/${value.entityId}`}>{value.name}</Link></li>
+                  }
+                </>
+              ))}
+              <li key={"user"}>
+                <i className="fa fa-user" aria-hidden="true"></i>
+                <i className='bx bxs-chevron-down htmlcss-arrow arrow'></i>
+                <ul className="htmlCss-sub-menu sub-menu">
+                  {isAuthenticated ? (
+                    <li key={"logout"}><Link to={"/logout"}>Log Out</Link></li>
+                  ) : (
+                    <li key={"login"}><Link to={"/login"}>Log In</Link></li>
+                  )}
+                  <li key={"sign-up"}><Link to={"/sign-up"}>Sign In</Link></li>
+                </ul> </li>
             </ul>
-          </li>
-          </ul>
+          </div>
+          <Search />
         </div>
-      <div className ="container-fluid">
-      <ul className="multilevel-dropdown-menu">
-        {categoryData && categoryData.map((value, i) => (
-          <>
-            {value.children.length > 0 ?
-              <li key={i} className="parent">
-                  <Link to={`category/${value.entityId}`}> {value.name}</Link>
-                  <i className="fa fa-angle-down"></i>
-                <ul className="child">
-                  {value.children.map((levelvalue, j) => (
-                    <li key={j}>  <Link to={`category/${levelvalue.entityId}`}>{levelvalue.name}</Link></li>
-                  ))}
-                </ul>
-              </li>
-              :
-              <li key={i} className="parent"><Link to={`category/${value.entityId}`}>{value.name}</Link></li>
-            }
-          </>
-        ))}
-      </ul>
-      </div>
-      </div>
+      </nav>
     </>
   )
 }

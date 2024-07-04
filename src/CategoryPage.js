@@ -30,7 +30,7 @@ function CategoryDetails() {
     try {
       var idToSend = Number(catId['cat_id']);
       const response = await axios.post('http://localhost:5000/category-id', { value: JSON.stringify(idToSend) });
-      console.log(response.data);
+      //console.log(response.data);
     } catch (error) {
       console.log('Error sending value:', error);
     }
@@ -48,7 +48,7 @@ function CategoryDetails() {
     fetchCat();
   }, [catId]);
 
-  if (!catData) {
+  if (!catData || catData.data == undefined) {
     return <div>Loading...</div>;
   }
   const products = catData.data.site.category.products.edges;
@@ -68,13 +68,13 @@ function CategoryDetails() {
                   <div className="product-image">
                     <Link to={"/product/" + value.node.entityId}>
                       {value.node.defaultImage ?
-                      <img src={value.node.defaultImage.urlOriginal} alt={value.node.name} />
+                      <img key={i} src={value.node.defaultImage.urlOriginal} alt={value.node.name} />
                       :
                       <div>No Image</div>
                     }
                     </Link>
                   </div>
-                  <div className="text"><h3>
+                  <div className="text" key={i}><h3>
                     <Link to={"/product/" + value.node.entityId}>
                       {value.node.name}
                     </Link></h3>
